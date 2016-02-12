@@ -1,0 +1,1 @@
+../../../Swiftility/Swiftility/Swiftility/Classes/Extensions/UIKit/UIImageEffects/UIImageEffects.h
