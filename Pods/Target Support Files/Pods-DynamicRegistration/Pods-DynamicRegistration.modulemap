@@ -1,0 +1,6 @@
+framework module Pods_DynamicRegistration {
+  umbrella header "Pods-DynamicRegistration-umbrella.h"
+
+  export *
+  module * { export * }
+}

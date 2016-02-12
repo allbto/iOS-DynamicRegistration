@@ -84,12 +84,12 @@ strip_invalid_archs() {
 
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
-  install_framework "Pods-ReactiveRegistration/OMGHTTPURLRQ.framework"
-  install_framework "Pods-ReactiveRegistration/PromiseKit.framework"
-  install_framework "Pods-ReactiveRegistration/Swiftility.framework"
+  install_framework "Pods-DynamicRegistration/OMGHTTPURLRQ.framework"
+  install_framework "Pods-DynamicRegistration/PromiseKit.framework"
+  install_framework "Pods-DynamicRegistration/Swiftility.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
-  install_framework "Pods-ReactiveRegistration/OMGHTTPURLRQ.framework"
-  install_framework "Pods-ReactiveRegistration/PromiseKit.framework"
-  install_framework "Pods-ReactiveRegistration/Swiftility.framework"
+  install_framework "Pods-DynamicRegistration/OMGHTTPURLRQ.framework"
+  install_framework "Pods-DynamicRegistration/PromiseKit.framework"
+  install_framework "Pods-DynamicRegistration/Swiftility.framework"
 fi
