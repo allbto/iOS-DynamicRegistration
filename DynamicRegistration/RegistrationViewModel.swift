@@ -34,7 +34,14 @@ struct CreditCard
 
     var useCard = true
     var status: Status = .NotVerified
-    var number = String()
+
+    var number = String() {
+        didSet {
+            if status == .Verified {
+                status = .NotVerified
+            }
+        }
+    }
     
     var isValid: Bool {
         return !useCard || status == .Verified
@@ -47,12 +54,14 @@ class RegistrationViewModel
         didSet { checkCorrectInput() }
     }
 
-    var creditCard = Dynamic(CreditCard())
+    var creditCard = Dynamic(CreditCard()) {
+        didSet { checkCorrectInput() }
+    }
     
-    var correctEmailProducer = Dynamic<Bool>(false)
-    var correctPasswordProducer = Dynamic<Bool>(false)
-    var correctCreditCardProducer = Dynamic<Bool>(false)
-    var correctInputProducer = Dynamic<Bool>(false)
+    var correctEmail = Dynamic<Bool>(false)
+    var correctPassword = Dynamic<Bool>(false)
+    var correctCreditCard = Dynamic<Bool>(false)
+    var correctInput = Dynamic<Bool>(false)
     
     func verifyCardNumber()
     {
@@ -61,7 +70,6 @@ class RegistrationViewModel
         FakeAPIService.sharedInstance.validateCreditCardNumber(creditCard.value.number)
         .then { valid -> Void in
             self.creditCard.value.status = valid ? .Verified : .Denied
-            self.checkCorrectInput()
         }
     }
     
@@ -76,11 +84,10 @@ class RegistrationViewModel
     
     func checkCorrectInput()
     {
-        correctEmailProducer.value = form.value.isEmailValid
-        correctPasswordProducer.value = form.value.isPasswordValid
-
-        correctCreditCardProducer.value = creditCard.value.isValid
+        correctEmail.value = form.value.isEmailValid
+        correctPassword.value = form.value.isPasswordValid
+        correctCreditCard.value = creditCard.value.isValid
         
-        correctInputProducer.value = correctEmailProducer.value && correctPasswordProducer.value && correctCreditCardProducer.value
+        correctInput.value = correctEmail.value && correctPassword.value && correctCreditCard.value
     }
 }

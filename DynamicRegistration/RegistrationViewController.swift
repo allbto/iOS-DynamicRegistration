@@ -20,41 +20,33 @@ class RegistrationViewController: UITableViewController {
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var registerButton: UIButton!
     
-    var viewModel: RegistrationViewModel!
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        viewModel = RegistrationViewModel()
+    lazy var viewModel: RegistrationViewModel! = {
+        let vm = RegistrationViewModel()
         
-        initViewModelBindings()
-    }
-    
-    func initViewModelBindings()
-    {
-        viewModel.correctInputProducer.bindAndFire { correct in
+        vm.correctInput.bindAndFire { correct in
             self.registerButton.enabled = correct
         }
         
-        viewModel.correctEmailProducer.bindAndFire { correct in
+        vm.correctEmail.bindAndFire { correct in
             let backgroundColor = correct ? UIColor.lightGrayColor() : UIColor.redColor()
             self.emailTextField.textColor = backgroundColor
         }
         
-        viewModel.correctPasswordProducer.bindAndFire { correct in
+        vm.correctPassword.bindAndFire { correct in
             let backgroundColor = correct ? UIColor.lightGrayColor() : UIColor.redColor()
             self.passwordTextField.textColor = backgroundColor
             self.passwordAgainTextField.textColor = backgroundColor
         }
         
-        viewModel.creditCard.bindAndFire { card in
+        vm.creditCard.bindAndFire { card in
             self.tableView.beginUpdates()
             self.tableView.endUpdates()
-
+            
             switch card.status {
                 
             case .NotVerified:
                 self.cardStatusLabel.text = "Card has not been verified yet"
+                self.cardStatusLabel.textColor = .lightGrayColor()
                 self.activityIndicator.hidden = true
                 self.verifyCardButton.hidden = false
                 
@@ -67,7 +59,7 @@ class RegistrationViewController: UITableViewController {
             case .Verified:
                 self.cardStatusLabel.text = "Card is verified"
                 self.cardStatusLabel.textColor = .greenColor()
-                self.creditCardTextField.userInteractionEnabled = false
+                self.creditCardTextField.resignFirstResponder()
                 self.activityIndicator.hidden = true
                 self.verifyCardButton.hidden = true
                 
@@ -79,6 +71,14 @@ class RegistrationViewController: UITableViewController {
                 
             }
         }
+        
+        return vm
+    }()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        _ = viewModel
     }
     
     // MARK: - Actions
@@ -105,7 +105,6 @@ class RegistrationViewController: UITableViewController {
     @IBAction func useCreditCardValueChangedAction(sender: AnyObject)
     {
         viewModel.creditCard.value.useCard = useCreditCardSwitch.on
-        viewModel.checkCorrectInput()
     }
     
     ////////////////////////////////////////////////////////////////
