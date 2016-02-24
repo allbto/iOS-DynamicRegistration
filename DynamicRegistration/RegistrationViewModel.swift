@@ -50,18 +50,22 @@ struct CreditCard
 
 class RegistrationViewModel
 {
+    // MARK: - Dynamic
+    
     var form = Dynamic(RegistrationForm()) {
-        didSet { checkCorrectInput() }
+        didSet { _checkCorrectInput() }
     }
 
     var creditCard = Dynamic(CreditCard()) {
-        didSet { checkCorrectInput() }
+        didSet { _checkCorrectInput() }
     }
     
     var correctEmail = Dynamic<Bool>(false)
     var correctPassword = Dynamic<Bool>(false)
     var correctCreditCard = Dynamic<Bool>(false)
     var correctInput = Dynamic<Bool>(false)
+    
+    // MARK: - Actions
     
     func verifyCardNumber()
     {
@@ -73,16 +77,21 @@ class RegistrationViewModel
         }
     }
     
+    // MARK: - View Models
+    
     func createSummaryViewModel() -> SummaryViewModel
     {
         let summaryViewModel = SummaryViewModel()
+        
         summaryViewModel.email = form.value.email
         summaryViewModel.creditCardNumber = creditCard.value.useCard ? creditCard.value.number : nil
         
         return summaryViewModel
     }
     
-    func checkCorrectInput()
+    // MARK: - Private
+    
+    private func _checkCorrectInput()
     {
         correctEmail.value = form.value.isEmailValid
         correctPassword.value = form.value.isPasswordValid

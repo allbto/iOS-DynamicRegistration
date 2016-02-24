@@ -7,27 +7,26 @@
 //
 
 import UIKit
+import Swiftility
 
-class SummaryViewController: UIViewController {
-
+class SummaryViewController: UIViewController, ViewModelController
+{
+    // MARK: - Outlets
     
     @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var creditCardNumberLabel: UILabel!
     
+    // MARK: - View Model
     
     var viewModel: SummaryViewModel!
     
-    override func viewDidLoad() {
+    // MARK: - Life cycle
+    
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
-
         
         emailLabel.text = viewModel.email
         creditCardNumberLabel.text = viewModel.creditCardNumber ?? "<N/A>"
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
 }

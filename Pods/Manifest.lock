@@ -18,7 +18,7 @@ PODS:
     - PromiseKit/CorePromise
   - PromiseKit/UIKit (3.0.2):
     - PromiseKit/CorePromise
-  - Swiftility (0.7.1)
+  - Swiftility (0.7.4)
 
 DEPENDENCIES:
   - PromiseKit
@@ -27,6 +27,6 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   OMGHTTPURLRQ: 633f98ee745aeda02345935a52eec1784cddb589
   PromiseKit: ab1a380f7a30cf8cce663a2411e8b3580b10313d
-  Swiftility: ea02d88bab58e1e7b58519d8b52cbffee7619b7c
+  Swiftility: 525092a327f9859c0b18bd45b8a281950ec109ed
 
 COCOAPODS: 0.39.0

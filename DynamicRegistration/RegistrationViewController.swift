@@ -7,9 +7,12 @@
 //
 
 import UIKit
+import Swiftility
 
-class RegistrationViewController: UITableViewController {
-
+class RegistrationViewController: UITableViewController, ViewModelController
+{
+    // MARK: - Outlets
+    
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var passwordAgainTextField: UITextField!
@@ -19,6 +22,8 @@ class RegistrationViewController: UITableViewController {
     @IBOutlet weak var verifyCardButton: UIButton!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var registerButton: UIButton!
+    
+    // MARK: - View Model
     
     lazy var viewModel: RegistrationViewModel! = {
         let vm = RegistrationViewModel()
@@ -75,9 +80,13 @@ class RegistrationViewController: UITableViewController {
         return vm
     }()
     
-    override func viewDidLoad() {
+    // MARK: - Life cycle
+    
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
-        
+
+        // Trigger lazy instantiation
         _ = viewModel
     }
     
@@ -106,29 +115,11 @@ class RegistrationViewController: UITableViewController {
     {
         viewModel.creditCard.value.useCard = useCreditCardSwitch.on
     }
-    
-    ////////////////////////////////////////////////////////////////
-    // MARK: - TableView
-    
-    
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        if (indexPath.row == 4) || (indexPath.row == 5) {
-            if viewModel.creditCard.value.useCard {
-                return 44
-            }
-            else {
-                return 0
-            }
-        }
-        
-        return 44
-    }
-    
-    
-    ////////////////////////////////////////////////////////////////
+
     // MARK: - Segue
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
+    {
         super.prepareForSegue(segue, sender: sender)
         
         if segue.identifier == "ShowSummary" {
@@ -137,15 +128,30 @@ class RegistrationViewController: UITableViewController {
         }
     }
     
-    
-    ////////////////////////////////////////////////////////////////
     // MARK: - Actions
     
-    @IBAction func showSummary(sender: AnyObject) {
-        performSegueWithIdentifier("ShowSummary", sender: self)
+    @IBAction func showSummary(sender: AnyObject)
+    {
+        self.performSegueWithIdentifier("ShowSummary", sender: self)
     }
-
-    @IBAction func verifyCardNumber(sender: AnyObject) {
+    
+    @IBAction func verifyCardNumber(sender: AnyObject)
+    {
         viewModel.verifyCardNumber()
+    }
+}
+
+// MARK: - TableView
+extension RegistrationViewController
+{
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat
+    {
+        if (indexPath.row == 4) || (indexPath.row == 5) {
+            if !viewModel.creditCard.value.useCard {
+                return 0
+            }
+        }
+        
+        return 44
     }
 }

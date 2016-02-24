@@ -25,7 +25,6 @@
 		191A0BF92CD816899D57F15C /* Pods_DynamicRegistration.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DynamicRegistration.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		37DD12FE1C695CBF008F7826 /* DynamicRegistration.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DynamicRegistration.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9326BAFF294E30799BE983EF /* Pods-DynamicRegistration.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DynamicRegistration.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DynamicRegistration/Pods-DynamicRegistration.debug.xcconfig"; sourceTree = "<group>"; };
-		98044B3F3A3161D55E680B77 /* Pods_DynamicRegistration.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DynamicRegistration.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9DBF2FD91C6DF58600C21DEA /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9DBF2FDA1C6DF58600C21DEA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9DBF2FDC1C6DF58600C21DEA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -89,19 +88,43 @@
 		9DBF2FD81C6DF58600C21DEA /* DynamicRegistration */ = {
 			isa = PBXGroup;
 			children = (
+				9DF2D0791C7DFE7F00C8A114 /* Classes */,
+				9DF2D07A1C7DFE9200C8A114 /* Views */,
+				9DF2D07B1C7DFEA100C8A114 /* Ressources */,
+			);
+			path = DynamicRegistration;
+			sourceTree = "<group>";
+		};
+		9DF2D0791C7DFE7F00C8A114 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
 				9DBF2FD91C6DF58600C21DEA /* AppDelegate.swift */,
-				9DBF2FDA1C6DF58600C21DEA /* Assets.xcassets */,
-				9DBF2FDB1C6DF58600C21DEA /* LaunchScreen.storyboard */,
-				9DBF2FDD1C6DF58600C21DEA /* Main.storyboard */,
+				9DBF2FE31C6DF58600C21DEA /* StringExtension.swift */,
 				9DBF2FDF1C6DF58600C21DEA /* FakeAPIService.swift */,
-				9DBF2FE01C6DF58600C21DEA /* Info.plist */,
 				9DBF2FE11C6DF58600C21DEA /* RegistrationViewController.swift */,
 				9DBF2FE21C6DF58600C21DEA /* RegistrationViewModel.swift */,
-				9DBF2FE31C6DF58600C21DEA /* StringExtension.swift */,
 				9DBF2FE41C6DF58600C21DEA /* SummaryViewController.swift */,
 				9DBF2FE51C6DF58600C21DEA /* SummaryViewModel.swift */,
 			);
-			path = DynamicRegistration;
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		9DF2D07A1C7DFE9200C8A114 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				9DBF2FDB1C6DF58600C21DEA /* LaunchScreen.storyboard */,
+				9DBF2FDD1C6DF58600C21DEA /* Main.storyboard */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		9DF2D07B1C7DFEA100C8A114 /* Ressources */ = {
+			isa = PBXGroup;
+			children = (
+				9DBF2FDA1C6DF58600C21DEA /* Assets.xcassets */,
+				9DBF2FE01C6DF58600C21DEA /* Info.plist */,
+			);
+			name = Ressources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

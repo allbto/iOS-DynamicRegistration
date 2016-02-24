@@ -8,30 +8,20 @@
 
 import Foundation
 import PromiseKit
+import Swiftility
 
-public func delay(delay: Double, closure:()->()) {
-    dispatch_after(
-        dispatch_time(
-            DISPATCH_TIME_NOW,
-            Int64(delay * Double(NSEC_PER_SEC))
-        ),
-        dispatch_get_main_queue(), closure)
-}
-
-
-class FakeAPIService {
-
+class FakeAPIService
+{
     static let sharedInstance = FakeAPIService()
     
     func validateCreditCardNumber(number: String) -> Promise<Bool>
     {
         return Promise { resolve, reject in
             
-            delay(2) {
+            after(2) {
                 resolve(number == "123456")
             }
             
         }
     }
-    
 }

@@ -8,9 +8,8 @@
 
 import UIKit
 
-class SummaryViewModel: NSObject {
-    
+class SummaryViewModel
+{
     var email: String = ""
     var creditCardNumber: String? = nil
-    
 }
